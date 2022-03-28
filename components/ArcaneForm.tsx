@@ -78,20 +78,20 @@ export default function ArcaneForm({
       </div>
       <div className="flex items-center justify-center  ">
         <input
-          className="form-checkbox border rounded-md focus:outline-none focus:border-orange-400 text-orange-400"
+          className="form-checkbox border rounded-md border-gray-700 focus:outline-none focus:border-orange-400 text-orange-400"
           type="checkbox"
           {...register("hunt")}
         />
       </div>
       <div className="flex items-center justify-center  ">
         <input
-          className="form-checkbox border rounded-md focus:outline-none focus:border-orange-400 text-orange-400"
+          className="form-checkbox border rounded-md border-gray-700 focus:outline-none focus:border-orange-400 text-orange-400"
           type="checkbox"
           {...register("content")}
         />
       </div>
 
-      <button className="flex items-center justify-center text-orange-400 hover:bg-orange-400 hover:text-white rounded-xl transition-colors">
+      <button className="flex items-center justify-center text-orange-400 hover:bg-orange-400 hover:text-white rounded-xl transition-colors focus:outline-none">
         Calc
       </button>
 
