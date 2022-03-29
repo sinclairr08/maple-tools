@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Input from "./Input";
 
 const requirements = [
   0, 12, 15, 20, 27, 36, 47, 60, 75, 92, 111, 132, 155, 180, 207, 236, 267, 300,
@@ -63,18 +64,14 @@ export default function ArcaneForm({
       </span>
 
       <div className="flex items-center justify-center  ">
-        <input
+        <Input
           type="number"
-          className="border-2 border-gray-300 rounded-md w-1/2 pl-1.5 py-0.5 focus:border-orange-400 focus:outline-none"
-          {...register("level")}
+          required
+          register={register("level", { max: 20 })}
         />
       </div>
       <div className="flex items-center justify-center  ">
-        <input
-          type="number"
-          className="border-2 border-gray-300 rounded-md w-1/2 pl-1.5 py-0.5  focus:border-orange-400 focus:outline-none"
-          {...register("progress")}
-        />
+        <Input type="number" required register={register("progress")} />
       </div>
       <div className="flex items-center justify-center  ">
         <input
