@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Item {
+  id         Int       @id @default(autoincrement())
+  owner      Character @relation(fields: [ownerId], references: [id])
+  ownerId    Int
+  type       ItemType
+  name       String
+  flame      String
+  potential  String
+  additional Int
+  upgrade    String
+  starForce  Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Character {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  itmes     Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ItemType {
+  WEAPON
+  SUBWEAPON
+  EMBLEM
+  RING
+  POCKET
+  PENDANT
+  BELT
+  CAP
+  FOREHEAD
+  EYEACC
+  CLOTHES
+  PANTS
+  SHOES
+  EARACC
+  SHOULDER
+  GLOVES
+  BADGE
+  MEDAL
+  CAPE
+  HEART
+}
