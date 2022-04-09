@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Button from "./Button";
 import Input from "./Input";
 
 const requirements = [
@@ -80,9 +81,9 @@ export default function ArcaneForm({
         <Input type="checkbox" register={register("content")} />
       </div>
 
-      <button className="flex items-center justify-center text-orange-400 hover:bg-orange-400 hover:text-white rounded-xl transition-colors focus:outline-none">
-        Calc
-      </button>
+      <div className="flex justify-center w-full">
+        <Button text="Calc" />
+      </div>
 
       <span className="flex items-center justify-center text-xs">
         {remainDate === 0 ? "Done!" : remainDate && `${remainDate} days left`}

@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { useForm, UseFormRegisterReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import Button from "../components/Button";
 import Input from "../components/Input";
+import LineInput from "../components/LineInput";
 import {
   FdipElements,
   getFdip,
@@ -10,72 +12,11 @@ import {
   RequiredElements,
 } from "../libs/statCalculator";
 
-interface LineInputProps {
-  type?: string;
-  selectdata?: string[];
-  labelwords: string;
-  register: UseFormRegisterReturn;
-}
-
-interface TwoLineInputProps {
-  type?: string;
-  selectdata?: string[];
-  labelwords1: string;
-  labelwords2: string;
-  register: UseFormRegisterReturn;
-}
-
 interface Calculator {
   firstOption: string;
   secondOption: string;
   value: number;
 }
-
-const LineInput = ({
-  type = "number",
-  selectdata,
-  labelwords,
-  register,
-}: LineInputProps) => {
-  return (
-    <div className="grid grid-cols-2 ">
-      <span className="pl-4 text-xs flex items-center">{labelwords}</span>
-      <div className="flex items-center justify-center">
-        <Input
-          type={type}
-          required
-          register={register}
-          selectdata={selectdata}
-        />
-      </div>
-    </div>
-  );
-};
-
-const TwoLineInput = ({
-  type = "number",
-  selectdata,
-  labelwords1,
-  labelwords2,
-  register,
-}: TwoLineInputProps) => {
-  return (
-    <div className="grid grid-cols-2 ">
-      <div className="flex flex-col">
-        <span className="pl-4 text-xs flex items-center">{labelwords1}</span>
-        <span className="pl-4 text-[5px] flex items-center">{labelwords2}</span>
-      </div>
-      <div className="flex items-center justify-center">
-        <Input
-          type={type}
-          required
-          register={register}
-          selectdata={selectdata}
-        />
-      </div>
-    </div>
-  );
-};
 
 const valueToFdip = (value: string, fdip: FdipElements) => {
   if (value === "주스탯") return fdip.fdipStat;
@@ -130,54 +71,49 @@ const Stats: NextPage = () => {
           <div className="py-2 flex flex-col space-y-4">
             <LineInput
               type="selectbox"
-              labelwords="직업"
+              labelword="직업"
               register={register("job")}
               selectdata={["아델"]}
             />
-            <LineInput labelwords="레벨" register={register("level")} />
+            <LineInput labelword="레벨" register={register("level")} />
             <LineInput
-              labelwords="메용 O 주스탯"
+              labelword="메용 O 주스탯"
               register={register("finalStat")}
             />
             <LineInput
-              labelwords="메용 X 주스탯"
+              labelword="메용 X 주스탯"
               register={register("finalStatWoBuff")}
             />
 
-            <TwoLineInput
-              labelwords1="고정 주스탯"
-              labelwords2="(심볼, 유니온, 어빌, 하이퍼)"
+            <LineInput
+              labelwords={["고정 주스탯", "(심볼, 유니온, 어빌, 하이퍼)"]}
               register={register("fixedStat")}
             />
 
+            <LineInput labelword="부스탯" register={register("subFinalStat")} />
             <LineInput
-              labelwords="부스탯"
-              register={register("subFinalStat")}
-            />
-            <LineInput
-              labelwords="부스탯 1당 스탯 상승 비율"
+              labelword="부스탯 1당 스탯 상승 비율"
               register={register("subStatIncRatio")}
             />
 
-            <TwoLineInput
-              labelwords1="고정 부스탯"
-              labelwords2="(심볼, 유니온, 어빌, 하이퍼)"
+            <LineInput
+              labelwords={["고정 부스탯", "(심볼, 유니온, 어빌, 하이퍼)"]}
               register={register("subFixedStat")}
             />
 
             <LineInput
-              labelwords="스탯 공격력"
+              labelword="스탯 공격력"
               register={register("statAbility")}
             />
 
-            <LineInput labelwords="데미지" register={register("dmgPer")} />
-            <LineInput labelwords="보공" register={register("bossDmgPer")} />
-            <LineInput labelwords="크뎀" register={register("critDmgPer")} />
-            <LineInput labelwords="방무" register={register("iGuard")} />
-            <LineInput labelwords="템 공퍼" register={register("attackPer")} />
-            <button className="flex items-center justify-center text-orange-400 hover:bg-orange-400 hover:text-white rounded-xl transition-colors focus:outline-none">
-              Submit!
-            </button>
+            <LineInput labelword="데미지" register={register("dmgPer")} />
+            <LineInput labelword="보공" register={register("bossDmgPer")} />
+            <LineInput labelword="크뎀" register={register("critDmgPer")} />
+            <LineInput labelword="방무" register={register("iGuard")} />
+            <LineInput labelword="템 공퍼" register={register("attackPer")} />
+            <div className="w-full flex justify-center">
+              <Button text="Submit!" />
+            </div>
           </div>
         </form>
       </div>
@@ -267,9 +203,9 @@ const Stats: NextPage = () => {
               {calculatedValue.toFixed(3)}
             </span>
           </div>
-          <button className="mt-24 flex items-center justify-center text-orange-400 hover:bg-orange-400 hover:text-white rounded-xl transition-colors focus:outline-none px-3">
-            Calculate!
-          </button>
+          <div className="mt-24">
+            <Button text="Calculate!" />
+          </div>
         </form>
       </div>
     </div>
