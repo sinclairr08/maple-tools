@@ -24,6 +24,14 @@ export default function Input({
           className="border-2 border-gray-300 rounded-md w-1/2 py-0.5 focus:border-orange-400 focus:outline-none text-center"
         />
       ) : null}
+      {type === "text" ? (
+        <input
+          {...register}
+          type="text"
+          required={required}
+          className="border-2 border-gray-300 rounded-md w-1/2 py-0.5 focus:border-orange-400 focus:outline-none text-center"
+        />
+      ) : null}
       {type === "checkbox" ? (
         <input
           {...register}
