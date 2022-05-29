@@ -1,9 +1,23 @@
 import { NextPage } from "next";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import ArcaneForm from "../components/ArcaneForm";
+import Input from "../components/Input";
+
+interface DreamBreakerForm {
+  floor: number;
+}
 
 const Symbols: NextPage = () => {
+  const { register, handleSubmit } = useForm<DreamBreakerForm>({
+    defaultValues: { floor: 10 },
+  });
+  const [dbFloor, setdbFloor] = useState(1);
+  const onValid = ({ floor }: DreamBreakerForm) => {
+    setdbFloor(floor / 10);
+  };
   return (
-    <div className="mt-20 flex flex-col items-center justify-center space-y-4 px-6 ">
+    <div className="flex flex-col items-center justify-center space-y-4 px-6 ">
       <div className="grid grid-cols-7 w-full ">
         <span className="flex items-center justify-center text-sm ">
           Symbol
@@ -37,7 +51,7 @@ const Symbols: NextPage = () => {
       <ArcaneForm
         imgurl="https://avatar.maplestory.nexon.com/ItemIcon/KEIDJHOC.png"
         huntFactor={8}
-        contentFactor={7}
+        contentFactor={dbFloor}
       />
       <ArcaneForm
         imgurl="https://avatar.maplestory.nexon.com/ItemIcon/KEIDJHOF.png"
@@ -54,6 +68,17 @@ const Symbols: NextPage = () => {
         huntFactor={8}
         contentFactor={6}
       />
+      <form
+        onSubmit={handleSubmit(onValid)}
+        className="pt-4 flex w-full items-center justify-center"
+      >
+        <span className="px-12">Your dream breaker floor</span>
+        <Input register={register("floor")} type="text" required />
+
+        <button className="text-orange-400 rounded-md px-12 text-center">
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
