@@ -70,12 +70,16 @@ const Symbols: NextPage = () => {
       />
       <form
         onSubmit={handleSubmit(onValid)}
-        className="pt-4 flex w-full items-center justify-center"
+        className="pt-4 grid grid-cols-3 w-full"
       >
-        <span className="px-12">Your dream breaker floor</span>
-        <Input register={register("floor")} type="text" required />
+        <span className="flex items-center justify-center text-sm">
+          Your dream breaker floor
+        </span>
+        <div className="flex items-center justify-center text-sm">
+          <Input register={register("floor")} type="text" required />
+        </div>
 
-        <button className="text-orange-400 rounded-md px-12 text-center">
+        <button className="text-orange-400 rounded-md text-center text-sm">
           Submit
         </button>
       </form>
