@@ -23,8 +23,8 @@ export default function LineInput({
       )}
       {labelwords && (
         <div className="flex flex-col">
-          {labelwords.map((labelword) => (
-            <span className="pl-4 text-[5px] flex items-center">
+          {labelwords.map((labelword, i) => (
+            <span key={i} className="pl-4 text-[5px] flex items-center">
               {labelword}
             </span>
           ))}
