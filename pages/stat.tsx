@@ -65,7 +65,7 @@ const Stats: NextPage = () => {
   }, [infElements]);
 
   return (
-    <div className="mt-20 flex">
+    <div className="flex">
       <div className="w-1/2 border border-gray-200 rounded-xl shadow-md">
         <form onSubmit={handleSubmit(onValid)}>
           <div className="py-2 flex flex-col space-y-4">

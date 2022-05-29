@@ -6,7 +6,7 @@ const Layout: NextPage = ({ children }) => {
   return (
     <div className="w-full ">
       <Header />
-      <div>{children}</div>
+      <div className="my-20">{children}</div>
       <Footer />
     </div>
   );

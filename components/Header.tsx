@@ -5,7 +5,7 @@ import { cls } from "../libs/utils";
 export default function Header() {
   const router = useRouter();
   return (
-    <div className="h-14 px-6 bg-gray-800 w-full grid fixed top-0 grid-cols-7">
+    <div className="h-14 px-6 bg-gray-800 w-full grid fixed top-0 grid-cols-7 z-10">
       <Link href="/symbol">
         <a
           className={cls(
