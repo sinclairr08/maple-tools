@@ -6,6 +6,7 @@ interface LineInputProps {
   selectdata?: string[];
   labelword?: string;
   labelwords?: string[];
+  required?: boolean;
   register: UseFormRegisterReturn;
 }
 
@@ -14,6 +15,7 @@ export default function LineInput({
   selectdata,
   labelword,
   labelwords,
+  required,
   register,
 }: LineInputProps) {
   return (
@@ -33,7 +35,7 @@ export default function LineInput({
       <div className="flex items-center justify-center">
         <Input
           type={type}
-          required
+          required={required}
           register={register}
           selectdata={selectdata}
         />

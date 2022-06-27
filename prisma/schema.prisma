@@ -13,25 +13,26 @@ datasource db {
 }
 
 model Item {
-  id         Int       @id @default(autoincrement())
-  owner      Character @relation(fields: [ownerId], references: [id])
-  ownerId    Int
-  type       ItemType
-  name       String
-  flame      String
-  potential  String
-  additional Int
-  upgrade    String
-  starForce  Int
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id        Int       @id @default(autoincrement())
+  owner     Character @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId   Int
+  type      ItemType
+  name      String
+  flame     String?
+  poten     String?
+  addi      String?
+  star      String?
+  status    Status    @default(BLANK)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Character {
   id        Int      @id @default(autoincrement())
   name      String   @unique
-  stat      StatType
-  itmes     Item[]
+  level     Int      @default(1)
+  job       String   @default("무직")
+  items     Item[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -45,13 +46,24 @@ enum StatType {
   ALL
 }
 
+enum Status {
+  DONE
+  BLANK
+  TEMP
+  CLOSED
+}
+
 enum ItemType {
   WEAPON
   SUBWEAPON
   EMBLEM
-  RING
+  RING1
+  RING2
+  RING3
+  RING4
   POCKET
   PENDANT
+  SUBPENDANT
   BELT
   CAP
   FOREHEAD
