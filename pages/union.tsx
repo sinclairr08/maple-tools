@@ -217,13 +217,19 @@ const Union: NextPage = () => {
     else setLoading(true);
 
     if (charAdd) {
+      alert("Sorry, This function is currentlt disabled");
+      /**  
       await axios.post("/api/characters", form);
       mutate();
+      */
 
       setCharAdd(false);
     } else if (charId) {
+      alert("Sorry, This function is currentlt disabled");
+      /**
       await axios.put(`/api/characters/${charId}`, form);
       mutate();
+       */
 
       setCharId(null);
     }
@@ -234,8 +240,11 @@ const Union: NextPage = () => {
     if (!itemId || loading) return;
     else setLoading(true);
 
+    alert("Sorry, This function is currentlt disabled");
+    /**
     await axios.put(`/api/items/${itemId}`, form);
     mutate();
+     */
 
     setItemId(null);
     setLoading(false);
