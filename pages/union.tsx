@@ -22,7 +22,7 @@ interface ItemBtnProps {
 }
 
 interface ItemBtnLineProps {
-  imgsrc: StaticImageData;
+  imgsrc: string;
   value: string | number;
 }
 
@@ -53,9 +53,7 @@ interface CharacterReturn {
 const ItemBtnLine = ({ imgsrc, value }: ItemBtnLineProps) => {
   return (
     <div className="grid grid-cols-[2fr_3fr] gap-x-0.5 mb-0.5 items-center">
-      <div className="w-4 h-4">
-        <Image src={imgsrc} />
-      </div>
+      <div className="w-4 h-4 text-red-400">{imgsrc}</div>
       <span>{value}</span>
     </div>
   );
@@ -81,22 +79,22 @@ const ItemBtn = ({ status, onClick, item }: ItemBtnProps) => {
       <span className="flex text-xs text-center">{item.name}</span>
       <div className="flex flex-col text-xs items-center justify-center">
         {item.flame ? (
-          <ItemBtnLine imgsrc={flameImg} value={item.flame} />
+          <ItemBtnLine imgsrc="추" value={item.flame} />
         ) : (
           <div className="w-4 h-4 mb-0.5" />
         )}
         {item.star ? (
-          <ItemBtnLine imgsrc={starImg} value={item.star} />
+          <ItemBtnLine imgsrc="별" value={item.star} />
         ) : (
           <div className="w-4 h-4 mb-0.5" />
         )}
         {item.poten ? (
-          <ItemBtnLine imgsrc={potenImg} value={item.poten} />
+          <ItemBtnLine imgsrc="잠" value={item.poten} />
         ) : (
           <div className="w-4 h-4 mb-0.5" />
         )}
         {item.addi ? (
-          <ItemBtnLine imgsrc={addiImg} value={item.addi} />
+          <ItemBtnLine imgsrc="에" value={item.addi} />
         ) : (
           <div className="w-4 h-4 mb-0.5" />
         )}
